@@ -1,4 +1,6 @@
 import React from "react";
+// react plugin for creating date-time-picker
+import Datetime from "react-datetime";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -7,6 +9,9 @@ import Icon from "@material-ui/core/Icon";
 import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 // core components
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Footer from "components/Footer/Footer.js";
@@ -19,6 +24,8 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
@@ -32,6 +39,7 @@ export default function LoginPage(props) {
   setTimeout(function() {
     setCardAnimation("");
   }, 700);
+
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -60,26 +68,32 @@ export default function LoginPage(props) {
                     <h4>Create your profile</h4>
                   </CardHeader>
                   <CardBody>
-                  <CustomDropdown
-                      left
-                      hoverColor="info"
-                      dropdownHeader="Dropdown Header"
-                      buttonIcon="settings"
-                      buttonProps={{
-                        className: classes.navLink,
-                        color: "transparent"
-                      }}
-                      dropdownList={[
-                        "Action",
-                        "Another action",
-                        "Something else here",
-                        { divider: true },
-                        "Separated link",
-                        { divider: true },
-                        "One more separated link"
-                      ]}
-                    />
-                    <CustomInput
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="sex">I am</InputLabel>
+                    <Select
+                      labelId="Sex"
+                      id="sex"
+                    >
+                      <MenuItem value={10}>Male</MenuItem>
+                      <MenuItem value={20}>Female</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl className={classes.inputLabel}>
+                    <InputLabel id="sex">Looking for</InputLabel>
+                    <Select
+                      labelId="Sex"
+                      id="sex"
+                    >
+                      <MenuItem value={10}>Male</MenuItem>
+                      <MenuItem value={20}>Female</MenuItem>
+                    </Select>
+                  </FormControl>
+                    <FormControl fullWidth>
+                      <Datetime
+                        inputProps={{ placeholder: "Date of Birth" }}
+                      />
+                    </FormControl>
+                  <CustomInput
                       labelText="First Name..."
                       id="first"
                       formControlProps={{
@@ -94,6 +108,23 @@ export default function LoginPage(props) {
                         )
                       }}
                     />
+
+                  <CustomInput
+                      labelText="Last Name..."
+                      id="first"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        type: "text",
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <People className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  
                     <CustomInput
                       labelText="Email..."
                       id="email"
